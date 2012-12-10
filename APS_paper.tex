@@ -102,7 +102,7 @@
 
 \begin{document}
 
-\title{Energy dynamics in a simulation of LAPD turbulence}
+\title{The nonlinear instability in the Large Plasma Device}
 
 \author{B. Friedman}
 \email{friedman@physics.ucla.edu}
@@ -126,7 +126,14 @@
 
 
 \begin{abstract}
-Abstract
+Simulations of drift wave turbulence in the Large Plasma Device (LAPD) [W. Gekelman \emph{et al.}, Rev. Sci. Inst. {\bf 62}, 2875 (1991)] reveal that a nonlinear instability primarily
+drives the turbulence despite the presence of a linear drift wave instability. A prior paper by the authors [B. Friedman \emph{et al.}, Phys Plasmas {\bf 19}, 102307 (2012)] used
+an energy dynamics analysis to show that the nonlinear instability preferentially drives $k_\parallel = 0$ potential energy fluctuations. These fluctuations
+then three-wave couple to $k_\parallel \ne 0$ potential energy fluctuations in order to access the adiabatic response to transfer their energy to kinetic energy fluctuations.
+The simulation in that paper, however, enforced periodic axial boundary conditions. This paper extends that work by applying axial sheath boundary conditions to the same model and comparing
+this new simulation with the old periodic one. It also looks more in depth at the consequences of the nonlinear instability, such as the affect on the turbulent structure and on the quasilinear flux.
+The main finding is that the linear physics changes significantly when sheath boundaries are used due to the presence of a strongly unstable conducting wall mode. 
+The turbulent state, however, is barely affected by the sheath boundaries as the nonlinear instability remains robust to the changed linear physics.
 \end{abstract}
 
 \maketitle
@@ -385,7 +392,7 @@ First, note that the real part operators are written explicitly in these express
 corresponding terms with $-\vec{k}$. Second, notice that $C_n(\vec{k}) + C_v(\vec{k}) + C_\phi(\vec{k}) + C_t(\vec{k}) = 0$.
 This is the reason why these terms are called transfer channels. They represent the transfer
 between the different types of energy of the different fields ($N,\phi,T_e \leftrightarrow v_{\para e}$), but taken together, they do not create or dissipate total
-energy from the system. The only energy field transfer in this system occurs through the parallel electron velocity (parallel current) dynamics. There is no direct transfer between
+energy from the system. The only energy transfer between different fields in this system is through the parallel electron velocity (parallel current) dynamics. There is no direct transfer between
 the state variables $N, \phi,$ and $T_e$.  Altogether, the coupling through the parallel current is called the
 adiabatic response. It is an essential part of both the linear and nonlinear
 drift wave mechanisms~\cite{scott2002,scott2005}. The adiabatic response moves energy from the pressure fluctuations to the perpendicular flow through the parallel current.
@@ -407,7 +414,7 @@ $Q_n(\vec{k})$ is the energy extraction from the equilibrium density profile int
 This term may have either sign depending on the phase relation between $\phi_{\vec{k}}$ and $n_{\vec{k}}$, 
 so it can in fact dissipate fluctuation potential energy from the system as well as create it
 at each $\vec{k}$. $Q_t(\vec{k})$ is completely analogous to $Q_n(\vec{k})$ but for the temperature rather than the density. 
-$Q_v(\vec{k})$ and $Q_\phi(\vec{k})$ are zero because the parallel and perpendicular flow fluctuations get energy through the adiabatic response, not directly through the free
+$Q_v(\vec{k})$ and $Q_\phi(\vec{k})$ are zero because the parallel and perpendicular flow fluctuations obtain energy only through the adiabatic response, not directly through the free
 energy in the equilibrium gradients.
 
 
@@ -428,25 +435,32 @@ visualization of all of these functions difficult. So the terms in the diagrams 
 The $n=0$ contribution is separated from the other $n$ components because
 the $n=0 \leftrightarrow n \ne 0$ dynamic is the primary factor that determines whether the linear instability or the nonlinear instability dominates the energy drive~\cite{friedman2012b}.
 
-In these diagrams, the source of energy into the fluctuations is free energy in the equilibrium gradients, $\nabla N_0$ and $\nabla T_{e0}$. The arrows labeled $Q_n$ and $Q_t$ represent energy injection from
-the equilibrium gradients into the fluctuations, $n(\vec{k})$ and $t(\vec{k})$, the only net deposition of energy into the fluctuations. A majority of the energy deposited into the fluctuations ($71\%$
+In these diagrams, the source of energy into the fluctuations is free energy in the equilibrium gradients, 
+$\nabla N_0$ and $\nabla T_{e0}$. The arrows labeled $Q_n$ and $Q_t$ represent energy injection from
+the equilibrium gradients into the fluctuations, $n(\vec{k})$ and $t(\vec{k})$. The four $Q$ arrows contain values that sum to $100$ (by choice of normalization). 
+Since the $Q$ pathways are the only pathways that deposit
+net energy into the fluctuations, the numbers in all arrows represent a percentage of the total energy injected into the system.
+Now, a majority of the energy deposited into the fluctuations ($71\%$
 for the periodic simulation and $56\%$ for the sheath simulation)
 is from the density gradient into the $n=0$ density fluctuations. This is not a path allowed by any of the linear instabilities in the system since
 the linear instabilities can only deposit energy into $n \ne 0$ fluctuations.
-In fact, in this turbulent state, more energy is transfered by nonlinear three-wave coupling into $n \ne 0$ fluctuations than by direct injection from the equilibrium gradients. The three wave
-coupling is represented by the $T_n$ and $T_t$ arrows. The direction of these arrows is from $n=0 \rightarrow n \ne 0$, which is in opposition to the common cascading type 
+In fact, in this turbulent state, more energy is transfered by nonlinear three-wave coupling into $n \ne 0$ fluctuations than by direct injection from the equilibrium gradients. The three-wave
+coupling is represented by the $T_n$ and $T_t$ arrows. The direction of these arrows is from $n=0 \rightarrow n \ne 0$, which is opposite to that expected from the common cascading type 
 turbulent paradigm where the linear instability dominates the turbulent injection dynamics and three-wave processes transfer energy to waves that are linearly stable.
 
-Now, the reason why all of the non-dissipated energy that is injected into $n=0$ density and temperature structures goes into $n \ne 0$ density and temperature potential energy structures rather than into $n=0$
-kinetic energy structures is that potential to kinetic energy transfer can only occur through the adiabatic response, which requires finite $n$. Actually, in the sheath simulation, potential energy
-can transfer to kinetic energy through the axial boundaries, but this still requires finite $n$ and it works only through the temperature fluctuations, which are less important than the density
-fluctuations in the simulations. So the main transfer channel from potential to kinetic energy, shown by the $C_n$, $C_t$, and $C_\phi$ arrows, is the adiabatic response. The adiabatic response takes energy
+The reason why all of the non-dissipated energy that is injected into $n=0$ density and temperature structures goes into 
+$n \ne 0$ density and temperature potential energy structures rather than into $n=0$
+kinetic energy structures is that potential to kinetic energy transfer can only work through the adiabatic response, which requires $n \ne 0$. Actually, in the sheath simulation, potential energy
+can transfer to kinetic energy through the axial boundaries, but this still requires $n \ne 0$ and it works only through the temperature fluctuations, which are less important than the density
+fluctuations in the simulations. Note, in fact, that this sheath boundary transfer channel isn't included in the energy dynamics calculations.
+So the main transfer channel from potential to kinetic energy, shown by the $C_n$, $C_t$, and $C_\phi$ arrows, is the adiabatic response. The adiabatic response takes energy
 from the $n \ne 0$ density and temperature fluctuations and transfers it into the parallel velocity fluctuations ($C_n$ and $C_t$, respectively). It then transfers some of this energy into
 $n \ne 0$ potential fluctuations ($C_\phi$), while much of the fluctuation energy is ohmically dissipated ($D_v$).
 
-The final step of the energy dynamics process is a three-wave axial wavenumber transfer from potential fluctuations at $n \ne 0$ to potential fluctuations at $n=0$, which is a neccessary component
-in driving the $Q_n(0)$ and $Q_t(0)$ injections. Meanwhile, dissipation acts on all fluctuations, which is quantified by the $D$ arrows throughout. A couple of interesting features are evident
-from the diagrams in Fig.~\ref{en_diagrams}. First, the turbulent dynamics in both simulations are dominated by the nonlinear instability process described above and in Friedman et al.~\cite{friedman2012}
+The final step of the energy dynamics process is a three-wave axial wavenumber transfer from potential fluctuations at $n \ne 0$ to potential fluctuations at $n=0$, which are of course neccessary
+in making the $Q_n(0)$ and $Q_t(0)$ terms finite. Meanwhile, dissipation acts on all fluctuations, which is quantified by the $D$ arrows throughout. A couple of interesting features are evident
+from the diagrams in Fig.~\ref{en_diagrams}. 
+First, the turbulent dynamics in both simulations are dominated by the nonlinear instability process described above and in Friedman et al.~\cite{friedman2012b}
 rather than the paradigmatic process of linear instability energy injection followed by nonlinear cascading. And second,
 the periodic and sheath simulations have qualitatively similar dynamics despite the fact that the linear stability properties of the two cases
 are qualitatively different. This speaks to the robustness of the nonlinear instability.
@@ -464,20 +478,24 @@ A more detailed discussion of this point is left to the Appendix, but in summary
 linear eigenmode structure to make the Fourier decomposition useful for this simulation.
 
 Figure~\ref{nl_vs_lin_gamma} illustrates the true dominance of the nonlinear instability in the positive $n=0$ energy growth rate and negative $n=1$ growth rate for the periodic and sheath simulations. 
-It also reveals the remarkable similarity in the nonlinear energy dynamics processes between the periodic and sheath simulations. This is in stark contrast to the no $n=0$ simulation, which has an $n=1$
-growth rate similar to the linear growth rate (Fig.~\ref{drift_cwm_gamma}) and a negative $n=0$ growth rate. Note that even though the $n=0$ fluctuation components are removed from this simulation at each time
-step, $n=0$ fluctuations are nonlinearly excited (by three-wave transfer) by the $n \ne 0$ fluctuations, and therefore, they do have small but finite amplitude prior to their removal, which can be used to
+The signs of these growth rates are the opposite of those for the linear instability.
+The figure also reveals the remarkable similarity in the nonlinear energy dynamics processes between the periodic and sheath simulations. 
+This is in stark contrast to the no $n=0$ simulation, which has an $n=1$
+growth rate similar to the linear growth rate (Fig.~\ref{drift_cwm_gamma}) and a negative $n=0$ growth rate. Note that even though the $n=0$ fluctuation components are 
+removed from the no $n=0$ simulation at each time
+step, $n=0$ fluctuations are nonlinearly excited (by three-wave transfer) by the $n \ne 0$ fluctuations, 
+and therefore, they do have small but finite amplitude prior to their removal, which can be used to
 calculate the growth rate of these modes. Furthermore, the turbulent growth rate of the $n=1$ component of the no $n=0$ simulation is
-slightly less than the linear growth rate for all $m$ due to the fact that eigenmodes other than the fastest growing ones are nonlinearly excited in the turbulent simulation, thus damping the growth rate.
-This no $n=0$ growth rate picture is just that of the turbulence paradigm of linear instability with cascading dynamics. Again, this is much different than the picture of the periodic and sheath simulations
-which are dominated by a nonlinear instability process, in which the $n=0$ and $n=1$ growth rates have the opposite sign of the linear growth rates.
+slightly less than the linear growth rate for all $m$ due to the fact that eigenmodes other than the fastest growing ones are nonlinearly excited in the turbulent simulation, 
+thus damping the growth rate.
+This no $n=0$ growth rate picture is just that of the turbulence paradigm of linear instability with cascading dynamics. 
 
 
 \begin{figure}[!htbp]
 \includegraphics[]{lin_vs_nl_gamma}
 \hfil
-\caption{ The turbulent growth rates defined as $\pdiff{E_{tot}}{t}/(2 E_{tot})$ where only the linear terms are included in $\pdiff{E_{tot}}{t}$. The $n=0$ (solid) and $n \ne 0$ (dashed) 
-contributions are separated.}
+\caption{ The turbulent growth rates defined as $\gamma = \pdiff{E_{tot}}{t}/(2 E_{tot})$ where only the linear terms are included in $\pdiff{E_{tot}}{t}$. The $n=0$ (solid) and $n = 1$ (dashed) 
+growth rates are displayed as a function of $m$.}
 \label{nl_vs_lin_gamma}
 \end{figure}
 
@@ -491,18 +509,18 @@ contributions are separated.}
 Now it may be the case that in simulations dominated by a linear instability, the fastest growing linear
 eigenmode dominates the system, nonlinearly transfering some energy to more weakly unstable or even stable eigenmodes. In this case, a large portion of the energy may remain in the fastest
 growing linear eigenmode~\cite{hatch2011}. In the case where a nonlinear instability is dominant, the linear eigenmode should have little bearing on the structure of the turbulence and therefore little
-energy should be contained in this eigenmode. Therefore, a guage of whether a linear or nonlinear instability dominates a system is the fraction of energy in a turbulent system
+energy should be contained in this eigenmode. Therefore, a gauge of whether a linear or nonlinear instability dominates a system is the fraction of energy in a turbulent system
 that is contained in the fastest growing linear eigenmode. This may be calculated by projecting the fastest growing eigenmode onto the turbulent state.
 
 Formally, in the model considered in this study, the turbulent state is fully described by four independent fields, which can be appended into a single vector of the spatio-temporal field functions: 
-$f_{turb}(\vec{r},t) = (N(\vec{r},t),T_e(\vec{r},t),\gradperp \phi(\vec{r},t), \vpe(\vec{r},t))$. This vector may be decomposed in a complete basis:
+$f_{turb}(\vec{r},t) = \{N(\vec{r},t),T_e(\vec{r},t),\gradperp \phi(\vec{r},t), \vpe(\vec{r},t)\}$. This vector may be decomposed in a complete basis:
 
 \beq
 \label{basis_decomp}
 f_{turb}(\vec{r},t) = \sum_{i,m} c_{i,m}(t) v_{i,m}(r,z) e^{i m \theta},
 \eeq
 
-where $v_{i,m}(r,z)$ are time-independent spatial complex basis functions (of the form $v_{i,m}(r,z) = \left\{ n_{i,m}(r,z),t_{i,m}(r,z),\gradperp \phi_{i,m}(r,z), v_{i,m}(r,z) \right\}$)
+where $v_{i,m}(r,z)$ are time-independent spatial complex basis functions of the form $v_{i,m}(r,z) = \left\{ n_{i,m}(r,z),t_{i,m}(r,z),\gradperp \phi_{i,m}(r,z), v_{i,m}(r,z) \right\}$,
 and $c_{i,m}(t)$ are the complex time-dependent amplitudes. The $\theta$ dependence of the basis functions has been explicitly imposed as a Fourier basis. The total number of
 linearly independent basis functions is the number of total grid points used in the simulation times the number of independent fields, which is four in this case.
 Now, $v_{i,m}(r,z)$ can be any linearly independent set of functions and need not be the linear eigenfunctions
@@ -511,8 +529,8 @@ growing linear eigenmode because this is the structure of interest that is to be
 The other $v_{i \ne 0,m}(r,z)$ comprise the remainder of the orthonormal basis, and they must be different from
 the remaining linear eigenfunctions in order to complete the orthogonal basis. It isn't necessary for the purpose of this study to actually compute these other basis functions, but if one were to compute
 them, one might start with all of the linear eigenmodes
-and perform a Gram-Schmidt orthogonalization procedure, starting with the fastest growing mode and orthogonalizing the others. Using this procedure, Hatch et al.~\cite{hatch2011}
-found that a significant fraction (number?) of the energy in a turbulent state of ITG turbulence was contained in the fastest growing linear eigenmode at each perpendicular wavenumber.
+and perform a Gram-Schmidt orthogonalization procedure, making sure to start with the fastest growing eigenmode in order to preserve it. Using this procedure, Hatch et al.~\cite{hatch2011}
+found that a significant fraction ($\sim 50\%$) of the energy in a turbulent state of ITG turbulence was contained in the fastest growing linear eigenmode at each perpendicular wavenumber.
 Such a result, however, doesn't require knowledge of the other basis functions, and thus they are not computed here.
 
 Now, to compute this fraction, first define an inner product that is energetically meaningful and that sets the orthonormality of the basis functions:
@@ -525,12 +543,12 @@ Now, to compute this fraction, first define an inner product that is energetical
 The weighting $w$ is such that $\left< f_{turb}, f_{turb} \right> = E_{turb}$.
 Now from Eqs.~\ref{basis_decomp} and~\ref{basis_orthonormality}, $\left< f_{turb}, f_{turb} \right> = E_{turb} = \sum_{i,m} |c_{i,m}|^2$ and 
 $\left< f_{turb,m}, f_{turb,m} \right> = E_{turb,m} = \sum_i |c_{i,m}|^2$.
-Now, the amount of energy contained in the fastest growing mode (for each $m$) is given by the square of the projection
+Then, the amount of energy contained in the fastest growing mode (for each $m$) is given by the square of the projection
 of the mode onto the turbulence: $E_{0,m} = \left| \left< v_{0,m}, f_{turb,m} \right> \right|^2 = |c_{0,m}|^2$. The ratio 
 $R_m = E_{0,m}/E_{turb,m}$ is a measure of the fraction of turbulent energy contained in the fastest growing linear eigenmode. 
 
 Of course, $E_{turb,m}$ is easily calculated from the turbulent state, but $E_{0,m}$ in the 
-turbulent state can only be found with knowledge of the fastest growing eigenfunction. The fastest growing eigenfunctions, though, can be found easily by running a simulation from a random 
+turbulent state can only be found with knowledge of the fastest growing eigenfunction. The fastest growing eigenfunction, though, can be found easily by running a simulation from a random 
 or turbulent state with all of the nonlinearities removed from the model equations as was done in Section~\ref{sec_linear}. After some time, the fastest growing eigenfunctions will come to
 dominate the fluctuation structure. Then, a Fourier decomposition in $m$ space will separate the fastest growing eigenfunctions at each $m$, including the real and imaginary part
 of the eigenfunctions (up to a time dependent complex constant, which is removed by normalizing the eigenfunction). These eigenfunctions can then be projected onto the turbulent state
@@ -539,9 +557,12 @@ with the inner product defined in Eq.~\ref{basis_orthonormality}, giving $E_{0,m
 The ratio $R_m$ is shown in Fig.~\ref{ratios} for the three simulations. As expected, the periodic simulation has a small value of the ratio ($R_m < 0.07$) for all $m$. 
 This confirms that the turbulence largely self-organizes
 without regard to the linear physics. In fact, $R_m$ rapidly declines for $m<40$, going all the way down to about $10^{-5}$. This region is where the nonlinear instability is strongest and where
-$n=0$ structures dominate the energy spectrum~\cite{friedman2012}. It is not surprising then that the fastest growing eigenfunctions that have $n=1$ don't make up much of the energy of the signal.
+$n=0$ structures dominate the energy spectrum~\cite{friedman2012b}. It is not surprising then that the fastest growing linear eigenfunctions, which have $n=1$,
+don't make up much of the energy of the signal.
 Also not surprising is that the fastest growing eigenfunctions make up a significant fraction of the energy in the no $n=0$ simulation. Where the linear drift wave instability is the strongest
 (at $m \sim 60$), $R_m \sim 0.5$. Clearly, the linear physics dominates the no $n=0$ simulation.
+
+The sheath simulation ratio result TBD since the wrong linear modes are being used currently.
 
 \begin{figure}[!htbp]
 \includegraphics[]{ratios}
@@ -556,40 +577,73 @@ Also not surprising is that the fastest growing eigenfunctions make up a signifi
 
 Another consequency of the linear instability being overshadowed by the nonlinear instability in the turbulent state is that 
 calculations of turbulent characteristics that rely upon linear properties may be
-highly inaccurate. An obvious contender for such a calculation is the quasilinear flux.
-The electrostatic radial particle flux on a given flux surface is
+inaccurate or misleading. An obvious contender for such a calculation is the quasilinear flux.
+The electrostatic radial particle flux through a given flux surface is
 
 \beq
 \label{rad_flux}
-\Gamma(r) = \int n v_r dS = \int - \sum_m i m n_m \phi_m^* dz.
+\Gamma(r) = \int n v_r dS = - \int \sum_m i m n_m \phi_m^* dz.
 \eeq
 
 The flux in the turbulent state depends upon the correlation of two independent quantities, however, a widely used method for evaluating the correlation between the density and potential is
-to use a linear eigenvector to express $n_m$ in terms of the potential: $n_m = L(m) \phi_m$, where $L(m)$ is the linear response function~\cite{terry2006a}. Alternatively, the potential
-may be written in terms of the density: $\phi_m = L^{-1}(m) n_m$.
-Substitution of these expressions into Eq.~\ref{rad_flux} yields expressions for the quasilinear flux:
+to use a linear eigenvector to express $n(m)$ in terms of the potential: $n(m) = L(m) \phi(m)$, where $L(m)$ is the linear response function~\cite{terry2006a}. Alternatively, the potential
+may be written in terms of the density: $\phi(m) = L^{-1}(m) n(m)$. The response function may be calculated analytically or using results from a linear simulation. An analytic calculation
+is used here because that is more common.
+Substitution of these linear relationships into Eq.~\ref{rad_flux} yields expressions for the quasilinear flux:
 
 \beqar
 \label{ql_flux_phi}
-\Gamma_{\phi,QL}(r,m) = \int - i m |\phi_m|^2 L(m) dz \\
+\Gamma_{\phi,QL}(r,m) = \int - i m |\phi(m)|^2 L(m) dz \\
 \label{ql_flux_ni}
-\Gamma_{n,QL}(r,m) = \int - i m |n_m|^2 L^{-1 *}(m) dz.
+\Gamma_{n,QL}(r,m) = \int - i m |n(m)|^2 L^{-1 *}(m) dz.
 \eeqar
 
 Which of these two expressions is used depends upon the quantity that one measures, density or potential.
-The amplitudes $|\phi_m|^2$ and $|n_m|^2$ are obtained from the turbulent state, but the linear response function must be obtained from the linear eigenvectors, typically the fastest growing
-linear eigenvectors. The full nonlinear flux and the quasilinear flux are shown for the three simulations in Fig.~\ref{flux_comparison}.
+The amplitudes $|\phi(m)|^2$ and $|n(m)|^2$ are obtained from the turbulent state, but the linear response function must be obtained from the linear eigenvectors, typically the fastest growing
+linear eigenvectors. Clearly, if the turbulence is largely composed of the linear eigenvectors, the two form of $\Gamma_{QL}$ in Eqs.~\ref{ql_flux_phi} and~\ref{ql_flux_ni} would produce similar
+results. However, even in the no $n=0$ simulation in which the turbulent dynamics is dominated by a linear instability, 
+less than $50\%$ of the turbulent energy is contained in the fastest growing eigenfunctions.
+
+The full nonlinear flux and the quasilinear fluxes are shown for the three simulations in Fig.~\ref{flux_comparison} as both a function of $m$ (summed over radius) and a function of $r$
+(summed over $m$). Surprisingly, the quasilinear flux amplitudes match the nonlinear flux
+amplitudes quite well for the periodic and sheath simulations but not for the no $n=0$ simulation. However, the fact that the quasilinear flux overpredicts the flux for the no $n=0$ simulation is
+expected because the non-fastest growing eigenmodes that account for over $50\%$ of the turbulent energy cause less flux than the fastest growing eigenmode~\cite{terry2006a}. The same reasoning
+was used above in discussing why the turbulent growth rate for the $n=1$ mode in this simulation is less than the linear $n=1$ growth rate, seen in Fig.~\ref{nl_vs_lin_gamma}. The expression
+for the flux is, after all, essentially the same as the expression for the nonconservative energy source (see Eq.~\ref{Qnk}), which is the most important part of the growth rate.
+
+Now for the periodic simulation, even though the nonlinear and quasilinear flux amplitudes are similar, the radial shapes of the quasilinear fluxes differ from each other and from
+the nonlinear flux. This is indicative of the fact that the linear eigenfunctions are poorly representative of the turbulent state, especially at low $m$.
+The sheath simulation has a better spatial match, which is expected due to the greater linear character of the turbulence in this simulation, however, the rather high degree of similarity
+is somewhat surprising.
 
 \begin{figure}[!htbp]
 \includegraphics[]{flux_comparison}
 \hfil
-\caption{The radial particle flux calculated from the turbulence vs. the corresponding quasilinear flux.}
+\caption{The radial particle flux calculated from the turbulence ($\gamma_{NL}$) vs. the corresponding quasilinear flux using equations~\ref{ql_flux_phi} and~\ref{ql_flux_ni}. 
+\textbf{a)} Shows the flux as a function of $m$ and \textbf{b)} shows the flux as a function of $r$.
+For reference to the curves in \textbf{b)}, the Bohm flux is about $0.1$, which is just about a factor of two higher
+than the flux for the periodic and sheath simulations, but an order of magnitude higher than the no $n=0$ simulation flux.}
 \label{flux_comparison}
 \end{figure}
 
 
 \section{Conclusion}
 \label{conclusion}
+
+The observation of filamentary $k_\para = 0$
+structures is prevalent in many different kinds of experiments and simulations, yet their presence is most often attributed to linear instabilities such as flow-driven Kelvin-Helmholtz or interchange
+instabilities. Very rarely are nonlinear instabilities considered. In simulations at least, there is no excuse in using indirect evidence to classify a type of turbulence because the spatial
+information allows one to perform energetics analyses. Experiments don't have such a luxury, but this should be motivation to try to numerically simulate experiments.
+
+Through simulation of a particular LAPD experiment, this paper has shown a nonlinear instability to be the driving force behind the turbulence. More acurately, this paper has extended
+earlier work~\cite{friedman2012b} that showed this. However, this extension is important because it deals with the matter of axial boundary conditions, and the nonlinear instability
+depends on axial wave dynamics, so the boundary conditions could have greatly affected this. And although the axial sheath boundary conditions used here do
+have a significant qualitative effect on the linear instabilities of the system, they do not affect the turbulence in a significant way.
+Specifically, the nonlinear instability that preferentially drives $k_\para = 0$ structures remains robust to the change in boundary conditions. Quantitatively, the sheath boundary conditions
+do cause the linear instability to be more competitive with the nonlinear instability, but not to the point of taking over. This should be expected from the prediction by Scott~\cite{scott2005}
+that the linear drift waves should dominate when their linear growth rate is larger than their frequency. This isn't the case for either the periodic or sheath simulations, however, it is
+closer to being true for the sheath simulation.
+
 
 \begin{acknowledgments}
 This research was performed under appointment to the Fusion Energy Sciences Fellowship Program administered by Oak Ridge Institute for
@@ -627,11 +681,12 @@ g_n(x) = \sum_{k=-n}^{n} \hat{f}_k e^{2 \pi i k x}
 
 There are several types of convergences of the $g_n$, one of which is the $L1$ norm. Defining the difference between the original signal and the Fourier reconstruction of order $n$ as
 $D_n = \sum_x |f(x) - g_n(x)|$, one can look at the convergence of $D_n$ as a function of $n$. For periodic signals, $D_n$ converges exponentially, while it only converges algebraically
-(power law) for non-periodic or discontinuous signals. $D_n$ is plotted for the cases of the two simulations
-(one with periodic axial boundary conditions and the other with sheath boundary conditions) in Fig.~\ref{fourier_convergence}.
+(power law) for non-periodic or discontinuous signals. 
 
-
-
+$D_n$ is plotted for the cases of the periodic and sheath simulations in Fig.~\ref{fourier_convergence}. Even though the x-axis label $n$ indicates the mode with the $n^{th}$ largest amplitude
+by construction of Eq.~\ref{f_recon}, it also happens to correspond to the axial mode number for all but the last few $n$. In other words, in both simulations, most of the energy is contained
+in $n=0$ modes followed by $n=1$ modes and so on. Therefore, in reality, the axial Fourier decomposition is a useful tool for even the sheath simulation despite the fact that Fourier
+modes are not natural eigenmodes in this case.
 
 
 \bibliography{refs}
