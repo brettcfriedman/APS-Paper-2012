@@ -102,7 +102,7 @@
 
 \begin{document}
 
-\title{The nonlinear instability in the Large Plasma Device}
+\title{Nonlinear instability in simulations of Large Plasma Device turbulence}
 
 \author{B. Friedman}
 \email{friedman@physics.ucla.edu}
@@ -126,14 +126,16 @@
 
 
 \begin{abstract}
-Simulations of drift wave turbulence in the Large Plasma Device (LAPD) [W. Gekelman \emph{et al.}, Rev. Sci. Inst. {\bf 62}, 2875 (1991)] reveal that a nonlinear instability primarily
-drives the turbulence despite the presence of a linear drift wave instability. A prior paper by the authors [B. Friedman \emph{et al.}, Phys Plasmas {\bf 19}, 102307 (2012)] used
-an energy dynamics analysis to show that the nonlinear instability preferentially drives $k_\parallel = 0$ potential energy fluctuations. These fluctuations
+Two simulations of turbulence in the Large Plasma Device (LAPD) [W. Gekelman \emph{et al.}, Rev. Sci. Inst. {\bf 62}, 2875 (1991)] are energetically analyzed and compared with each other
+and with the experiment.
+The simulations use the same model, but different axial boundary conditions. One uses periodic axial boundaries, while the other uses sheath boundaries. The linear physics is
+different between the two scenarios because the only linear instability in the periodic boundary simulation is a drift wave instability, while the sheath boundary simulation
+contains a conducting wall mode instability which is slightly more unstable than the drift waves. Nevertheless, the turbulence in the two simulations is similar because it is primarily
+driven by a robust nonlinear instability that is the same for the two cases.
+The nonlinear instability preferentially drives $k_\parallel = 0$ potential energy fluctuations, which
 then three-wave couple to $k_\parallel \ne 0$ potential energy fluctuations in order to access the adiabatic response to transfer their energy to kinetic energy fluctuations.
-The simulation in that paper, however, enforced periodic axial boundary conditions. This paper extends that work by applying axial sheath boundary conditions to the same model and comparing
-this new simulation with the old periodic one. It also looks more in depth at the consequences of the nonlinear instability, such as the affect on the turbulent structure and on the quasilinear flux.
-The main finding is that the linear physics changes significantly when sheath boundaries are used due to the presence of a strongly unstable conducting wall mode. 
-The turbulent state, however, is barely affected by the sheath boundaries as the nonlinear instability remains robust to the changed linear physics.
+The turbulence self-organizes to drive this nonlinear instability, which destroys the linear eigenmode structures, making the linear instabilities ineffective. This makes predictions that
+rely upon linear calculations such as the quasilinear flux inacurate.
 \end{abstract}
 
 \maketitle
@@ -215,8 +217,8 @@ There are two sources of free energy: the density gradient due to the equilibriu
 taken from experimental fits. $N_0$ and $T_{e0}$ are functions of only the radial cylindrical coordinate $r$, and they are shown in Fig.~\ref{eq_profiles}. 
 The mean potential profile $\phi_0$ is set to zero in the model, and terms involving $\phi_0$ are not included in Eqns.~\ref{ni_eq}-\ref{te_eq}. 
 The justification for this is that biasable azimuthal limiters in LAPD allow for the mean $E \times B$ flow and flow shear to be varied with high precision, even allowing the flow to be
-zeroed out~\cite{schaffner2012}. 
-The simulations in this paper use the $N_0$, $T_{e0}$, and $\phi_0$ profiles from the zeroed out flow experiment, justifying setting the mean potential profile to zero in the simulations.
+nulled out~\cite{schaffner2012}. 
+The simulations in this paper use the $N_0$, $T_{e0}$, and $\phi_0$ profiles from the nulled out flow experiment, justifying setting the mean potential profile to zero in the simulations.
 
 Simulations also use density and temperature sources ($S_n$ and $S_T$) in order to keep the equilibrium profiles from relaxing away from their experimental shapes. 
 These sources suppress the azimuthal averages ($m=0$ component of the density and temperature fluctuations) at each time step. 
@@ -224,10 +226,10 @@ The azimuthal average of the potential $\phi$ is allowed to evolve in
 the simulation, allowing zonal flows to form.
 
 The terms in Poisson brackets are the $E \times B$ advective nonlinearities, which are the only nonlinearities used in the simulations.
-The numerical simulations are fully spatial in all three dimensions (as opposed to spectral) and use cylindrical annular geometry ($12<r<40$ cm). The radial extent used in the simulation
+The numerical simulations use finite differences in all three dimensions and use cylindrical annular geometry ($12<r<40$ cm). The radial extent used in the simulation
 encompasses the region where fluctuations are above a few percent in the experiment. Therefore, the radial boundaries are fixed to zero value.
 
-This study analyzes three turbulent simulations which will be referred to as the periodic simulation, the no $n=0$ simulation, and the sheath simulation.
+This study analyzes three turbulent simulations which will be referred to as (1) the periodic simulation, (2) the no $n=0$ simulation, and (3) the sheath simulation.
 The periodic and no $n=0$ simulations were also analyzed in a previous paper~\cite{friedman2012b}. Both of these simulations enforce periodic boundary conditions in the axial ($z$)
 direction. The no $n=0$ simulation adds an artificial sink-like contribution to Eqns.~\ref{ni_eq}-\ref{te_eq} which removes the axial average 
 ($k_\parallel = n = 0$ contribution) of the fluctuations at each time step. This no $n=0$ model essentially eliminates nonlinear instability drive and allows
@@ -265,8 +267,9 @@ $6$ eV, respectively.}
 \includegraphics[]{statistics}
 \hfil
 \caption{A comparison of the statistical turbulent properties of the density field. The figures show \textbf{a)} the frequency spectrum, \textbf{b)} the pdf and \textbf{c)} the RMS level
-of the fluctuations as a function of radius. The various curves use data calculated from the experiment, the simulation with periodic boundary conditions, the simulation with sheath
-boundary conditions, and a simulation where the $n=0$ components of the fluctuations are artificially removed.}
+of the fluctuations as a function of radius. The various curves use data calculated from the experiment (black), the simulation with periodic boundary conditions (red), 
+the simulation with sheath boundary conditions (blue), and a simulation where the $n=0$ components of the fluctuations are artificially removed (green). The color scheme is consistent
+throughout the paper for all figures.}
 \label{statistics}
 \end{figure}
 
@@ -318,7 +321,7 @@ are only significant in the end if they affect the turbulence dynamics. And foll
 an energy dynamics analysis of the turbulent simulations.
 
 
-\section{Energetics Machinery}
+\section{Energetics Formalism}
 \label{sec_energetics_machinery}
 
 In order to perform an energy dynamics analysis on the simulations, expressions for the energy and energy evolution must be derived from Eqs.~\ref{ni_eq}-\ref{te_eq}.
@@ -348,7 +351,7 @@ A more detailed look at the energetic processes comes from a spectral energy ana
 $F(r,\theta,z) = \sum_{\vec{k}} f_{\vec{k}}(r) e^{i (m \theta + k_z z )}$,
 where the subscript $\vec{k}$ represents the spectral wavenumbers, $(m,n)$, and both positive and negative wavenumbers are included in the sums. 
 $m$ is the azimuthal wavenumber while $n$ is the axial integer wavenumber such that $k_\para \equiv k_z = 2 \pi n/l_z$. 
-Note that the radial direction is not spectrally decomposed because it is too complicated with a global simulation.
+Note that the radial direction is not spectrally decomposed because it's not essential here.
 With this, the energy of each Fourier $\vec{k} = (m,n)$ mode is
 
 \beq
@@ -422,7 +425,7 @@ energy in the equilibrium gradients.
 \label{dyn_results}
 
 \begin{figure}[!htbp]
-\includegraphics[width=0.9\textwidth]{energy_diagrams}
+\includegraphics[width=0.8\textwidth]{energy_diagrams}
 \hfil
 \caption{Summary of the energy dynamics for the \textbf{a)} periodic case and \textbf{b)} sheath boundary case. Each arrow contains the sum over all $m$. The 0's in the parentheses
 represent the $n=0$ modes while the !0's represent a sum over the $n$ modes for $n \ne 0$. The values in the arrows represent the percentage of total energy that goes through the channel
@@ -469,7 +472,14 @@ A more compact way to see the similarity of the instability process in the perio
 This figure shows the turbulent growth rate of the two simulations along with that of the no $n=0$ simulation, which really contrasts the periodic and sheath simulations. 
 The turbulent growth rate is defined as the net energy injection
 into the fluctuations minus the dissipation out of them, all divided by the total energy. The conservative transfers are of course not part of the growth rates.
-Formally, $\gamma(\vec{k}) = (\sum_j Q_j(\vec{k}) + D_j(\vec{k}))/E_{tot}(\vec{k})$, where the index j represents the different fields.
+Formally, 
+
+\beq
+\label{gamma_def}
+\gamma(\vec{k}) = (\sum_j Q_j(\vec{k}) + D_j(\vec{k}))/E_{tot}(\vec{k}), 
+\eeq
+
+where the index j represents the different fields.
 Since the growth rates sum over the fields, it's not as difficult to view them in their full wavenumber space (both in $m$ and $n$). However, almost all of the energy in the simulations is 
 contained in $n=0$ and $n=1$ fluctuations, so $n>1$ fluctuations are not shown in the figure. It should be noted, however, that Fourier decomposing the sheath simulation in the axial direction
 is less ideal than doing so in the periodic simulation. Fourier modes are not as natural a basis in the sheath simulation, and the $n=1$ Fourier mode does not perfectly represent the linear
@@ -494,7 +504,7 @@ This no $n=0$ growth rate picture is just that of the turbulence paradigm of lin
 \begin{figure}[!htbp]
 \includegraphics[]{lin_vs_nl_gamma}
 \hfil
-\caption{ The turbulent growth rates defined as $\gamma = \pdiff{E_{tot}}{t}/(2 E_{tot})$ where only the linear terms are included in $\pdiff{E_{tot}}{t}$. The $n=0$ (solid) and $n = 1$ (dashed) 
+\caption{ The turbulent growth rates with $\gamma$ defined in Eq.~\ref{gamma_def} The $n=0$ (solid) and $n = 1$ (dashed) 
 growth rates are displayed as a function of $m$.}
 \label{nl_vs_lin_gamma}
 \end{figure}
@@ -517,16 +527,17 @@ $f_{turb}(\vec{r},t) = \{N(\vec{r},t),T_e(\vec{r},t),\gradperp \phi(\vec{r},t), 
 
 \beq
 \label{basis_decomp}
-f_{turb}(\vec{r},t) = \sum_{i,m} c_{i,m}(t) v_{i,m}(r,z) e^{i m \theta},
+f_{turb}(\vec{r},t) = \sum_{i,m} c_{i,m}(t) \psi_{i,m}(r,z) e^{i m \theta},
 \eeq
 
-where $v_{i,m}(r,z)$ are time-independent spatial complex basis functions of the form $v_{i,m}(r,z) = \left\{ n_{i,m}(r,z),t_{i,m}(r,z),\gradperp \phi_{i,m}(r,z), v_{i,m}(r,z) \right\}$,
+where $\psi_{i,m}(r,z)$ are time-independent spatial complex basis functions of the form $\psi_{i,m}(r,z) = \left\{ n_{i,m}(r,z),t_{i,m}(r,z),\gradperp \phi_{i,m}(r,z), v_{i,m}(r,z) \right\}$,
 and $c_{i,m}(t)$ are the complex time-dependent amplitudes. The $\theta$ dependence of the basis functions has been explicitly imposed as a Fourier basis. The total number of
 linearly independent basis functions is the number of total grid points used in the simulation times the number of independent fields, which is four in this case.
-Now, $v_{i,m}(r,z)$ can be any linearly independent set of functions and need not be the linear eigenfunctions
-of the system. In fact, the linear eigenfunctions of the equations used here are not orthogonal, and are thus not very useful to consider. However, it is quite useful to set $v_{0,m}(r,z)$ to the fastest
+Now, $\psi_{i,m}(r,z)$ can be any linearly independent set of functions and need not be the linear eigenfunctions
+of the system. In fact, the linear eigenfunctions of the equations used here are not orthogonal, and are thus not very useful to consider. 
+However, it is quite useful to set $\psi_{0,m}(r,z)$ to the fastest
 growing linear eigenmode because this is the structure of interest that is to be projected onto the turbulence. 
-The other $v_{i \ne 0,m}(r,z)$ comprise the remainder of the orthonormal basis, and they must be different from
+The other $\psi_{i \ne 0,m}(r,z)$ comprise the remainder of the orthonormal basis, and they must be different from
 the remaining linear eigenfunctions in order to complete the orthogonal basis. It isn't necessary for the purpose of this study to actually compute these other basis functions, but if one were to compute
 them, one might start with all of the linear eigenmodes
 and perform a Gram-Schmidt orthogonalization procedure, making sure to start with the fastest growing eigenmode in order to preserve it. Using this procedure, Hatch et al.~\cite{hatch2011}
@@ -537,14 +548,14 @@ Now, to compute this fraction, first define an inner product that is energetical
 
 \beq
 \label{basis_orthonormality}
-\left< v_{i,m},v_{j,m} \right> = \int w v_{i,m}^* \cdot v_{j,m} dV = \delta_{i,j}.
+\left< \psi_{i,m},\psi_{j,m} \right> = \int w \psi_{i,m}^* \cdot \psi_{j,m} dV = \delta_{i,j}.
 \eeq
 
 The weighting $w$ is such that $\left< f_{turb}, f_{turb} \right> = E_{turb}$.
 Now from Eqs.~\ref{basis_decomp} and~\ref{basis_orthonormality}, $\left< f_{turb}, f_{turb} \right> = E_{turb} = \sum_{i,m} |c_{i,m}|^2$ and 
 $\left< f_{turb,m}, f_{turb,m} \right> = E_{turb,m} = \sum_i |c_{i,m}|^2$.
 Then, the amount of energy contained in the fastest growing mode (for each $m$) is given by the square of the projection
-of the mode onto the turbulence: $E_{0,m} = \left| \left< v_{0,m}, f_{turb,m} \right> \right|^2 = |c_{0,m}|^2$. The ratio 
+of the mode onto the turbulence: $E_{0,m} = \left| \left< \psi_{0,m}, f_{turb,m} \right> \right|^2 = |c_{0,m}|^2$. The ratio 
 $R_m = E_{0,m}/E_{turb,m}$ is a measure of the fraction of turbulent energy contained in the fastest growing linear eigenmode. 
 
 Of course, $E_{turb,m}$ is easily calculated from the turbulent state, but $E_{0,m}$ in the 
@@ -572,10 +583,10 @@ The sheath simulation ratio result TBD since the wrong linear modes are being us
 \end{figure}
 
 
-\subsection{Quasilinear Flux}
+\subsection{Comparison to Quasilinear Theory}
 \label{subsec_quasilinear}
 
-Another consequency of the linear instability being overshadowed by the nonlinear instability in the turbulent state is that 
+Another consequence of the linear instability being overshadowed by the nonlinear instability in the turbulent state is that 
 calculations of turbulent characteristics that rely upon linear properties may be
 inaccurate or misleading. An obvious contender for such a calculation is the quasilinear flux.
 The electrostatic radial particle flux through a given flux surface is
@@ -586,9 +597,11 @@ The electrostatic radial particle flux through a given flux surface is
 \eeq
 
 The flux in the turbulent state depends upon the correlation of two independent quantities, however, a widely used method for evaluating the correlation between the density and potential is
-to use a linear eigenvector to express $n(m)$ in terms of the potential: $n(m) = L(m) \phi(m)$, where $L(m)$ is the linear response function~\cite{terry2006a}. Alternatively, the potential
-may be written in terms of the density: $\phi(m) = L^{-1}(m) n(m)$. The response function may be calculated analytically or using results from a linear simulation. An analytic calculation
-is used here because that is more common.
+to use a linear eigenvector to express $n(m)$ in terms of the potential: $n(m) \rightarrow L(m) \phi(m)$. $L(m)$ is the linear response function for the particular system
+defined as $L(m) = n_{lin}(m)/\phi_{lin}(m)$ with $n_{lin}(m)$ and $\phi_{lin}(m)$ the density and potential components of the linear eigenvector~\cite{terry2006a}. 
+Alternatively, the potential may be written in terms of the density: $\phi(m) \rightarrow L^{-1}(m) n(m)$. 
+The response function may be calculated analytically or using results from a linear simulation. Analytic expressions (not shown)
+are used here because that is more common.
 Substitution of these linear relationships into Eq.~\ref{rad_flux} yields expressions for the quasilinear flux:
 
 \beqar
@@ -630,19 +643,26 @@ than the flux for the periodic and sheath simulations, but an order of magnitude
 \section{Conclusion}
 \label{conclusion}
 
-The observation of filamentary $k_\para = 0$
-structures is prevalent in many different kinds of experiments and simulations, yet their presence is most often attributed to linear instabilities such as flow-driven Kelvin-Helmholtz or interchange
-instabilities. Very rarely are nonlinear instabilities considered. In simulations at least, there is no excuse in using indirect evidence to classify a type of turbulence because the spatial
-information allows one to perform energetics analyses. Experiments don't have such a luxury, but this should be motivation to try to numerically simulate experiments.
+The observation of filamentary $k_\para = 0$ structures is common in many different kinds of experiments and simulations~\cite{rogers2010}. 
+Not surprisingly, the presence of these structures is usually attributed to linear flute-like instabilities such as flow-driven Kelvin-Helmholtz or interchange instabilities rather than to 
+nonlinear instabilities~\cite{rogers2010}.
+Due to natural limitations in plasma turbulence experiments, one usually has to resort to indirect evidence to 
+gain insight into physical mechanisms of observed turbulence. 
+On the other hand, numerical simulations have all spatial and temporal information available which allows one to perform detailed turbulence analyses, such as the energetics analysis
+performed in this paper. 
+This can make turbulence simulations (provided they are validated on observable data) an important tool for uncovering underlying physical mechanisms.
 
 Through simulation of a particular LAPD experiment, this paper has shown a nonlinear instability to be the driving force behind the turbulence. More acurately, this paper has extended
 earlier work~\cite{friedman2012b} that showed this. However, this extension is important because it deals with the matter of axial boundary conditions, and the nonlinear instability
 depends on axial wave dynamics, so the boundary conditions could have greatly affected this. And although the axial sheath boundary conditions used here do
 have a significant qualitative effect on the linear instabilities of the system, they do not affect the turbulence in a significant way.
 Specifically, the nonlinear instability that preferentially drives $k_\para = 0$ structures remains robust to the change in boundary conditions. Quantitatively, the sheath boundary conditions
-do cause the linear instability to be more competitive with the nonlinear instability, but not to the point of taking over. This should be expected from the prediction by Scott~\cite{scott2005}
-that the linear drift waves should dominate when their linear growth rate is larger than their frequency. This isn't the case for either the periodic or sheath simulations, however, it is
-closer to being true for the sheath simulation.
+do cause the linear instability to be more competitive with the nonlinear instability, but this effect is not large enough to change the qualitative picture. 
+
+
+%This should be expected from the prediction by Scott~\cite{scott2005}
+%that the linear drift waves should dominate when their linear growth rate is larger than their frequency. This isn't the case for either the periodic or sheath simulations, however, it is
+%closer to being true for the sheath simulation.
 
 
 \begin{acknowledgments}
