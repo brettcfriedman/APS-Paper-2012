@@ -141,7 +141,7 @@ The turbulence self-organizes to drive this nonlinear instability, which destroy
 
 \section{Introduction}
 
-In the past, several studies of simulations of magnetized plasma turbulence that used different plasma models and/or scenarios uncovered that nonlinear instabilities drove the turbulence. 
+Hydrodynamic turbulence often occurs in the absence of linear instability, e.g. turbulence in pipe flow (Pouseille flow)~\cite{}.  Although many robust linear instabilities exist in magnetized plasmas, nonlinear instability can arise as has been shown in many turbulence simulations.
 Sometimes the instabilities were found to be of the subcritical~\cite{waltz1985,scott1990,scott1992,nordman1993,itoh1996,highcock2012} or supercritical~\cite{dimits2000,ernst2004} variety, 
 while at other times the nonlinear instability simply overpowered a particular linear instability to drive the 
 turbulence~\cite{biskamp1995,drake1995,zeiler1996,zeiler1997,korsholm1999,scott2002,scott2003,scott2005,friedman2012b}. In the scenario applicable to turbulence in
@@ -154,23 +154,18 @@ that the mechanism driving the nonlinear instability relies upon axial wavenumbe
 to preferentially drive $k_\para = 0$ density and temperature fluctuations, taking energy from the density and temperature equilibrium gradients. But in order to access the adiabatic response,
 which transfers energy into the dynamically critical $E \times B$ flows, the $k_\para = 0$ fluctuations must transfer their energy through nonlinear three-wave decay into $k_\para \ne 0$ fluctuations.
 
-All of these straight magnetic field simulations, however, employed periodic boundary conditions in the axial (z) direction. 
-Now, not only are periodic boundary conditions unphysical, but they can also prevent the linear drift waves from accessing their most unstable axial structures.
-In other words, the largest scale axial fluctuations that can fit in the machine when periodic boundaries are imposed are those with a single wavelength. 
-Half-wavelength or quarter-wavelength fluctuations
-are not allowed even though they have larger linear growth rates in the LAPD configuration. Furthermore, it is well known that wall properties can drive linear instabilities like in
-the case of resistive wall modes or conducting wall modes~\cite{berk1991}, with the latter being relevant to the LAPD configuration. Clearly, periodic boundary simulations miss all of this wall physics.
+All of these straight magnetic field simulations, however, employed periodic boundary conditions in the axial (field-aligned) direction.   One can justifiably question the use of periodic axial boundary conditions to model LAPD and wonder whether the nonlinear instability is an artifact of this choice.  Additionally the use of this boundary condition may prevent the fastest growing linear drift-waves in LAPD from being captured in the simulation: with periodic boundary conditions the longest wavelength mode has its wavelength equal to the length of the device whereas the fundamental mode (half-wavelength equal to the device length) has a higher growth rate.  The actual LAPD axial boundary includes conducting structures; it is well known that sheaths on metal walls can drive linear instabilities like the conducting wall modes~\cite{berk1991}. Clearly, periodic boundary simulations miss all of this wall physics.
 Axial boundary conditions, therefore, have a significant
-affect on the linear stability properties of the system, which is shown in detail in Section~\ref{sec_linear}. And since the nonlinear instability relies upon axial wavelength dynamics to work, it is 
+affect on the linear stability properties of the system, which is shown in detail in Section~\ref{sec_linear}. And since the nonlinear instability relies upon very-long-parallel-wavelength modes to operate, it is 
 reasonable to speculate that the bondaries also might have a significant affect on the nonlinear instability properties.
 
-The real axial boundaries in LAPD are complicated. One side of the device contains an emitting cathode behind a mesh annode, and in front of that sits a biased limiter with radius slightly
+The real axial boundaries in LAPD are complicated. One side of the device contains an hot, emissive cathode behind a mesh anode, and in front of that sits a biased limiter with radius slightly
 less than the cathode radius~\cite{schaffner2012}.
-The other side contains a floating mesh plate, which is likely shielded by a layer of neutral gas. Not only is it difficult to determine what the actual axial boundary conditions are, it is also
+The other side contains a floating mesh plate, which is likely shielded by a layer of neutral gas (the plasma my be "detached" from the plate on this end). Not only is it difficult to determine what the actual axial boundary conditions are, it is also
 difficult to develop and implement models for the boundaries. Thus, this paper begins to explore the affect of non-periodic axial boundary conditions on the nonlinear turbulent dynamics using various
 idealized boundaries, leaving the calculation and implementation of physically realistic boundary conditions to future work. 
-The different conditions used here include zero-value, zero-derivative, and perfectly conducting metal plates, which can be modeled with a Bohm sheath condition. 
-The main finding is that the linear stability properties of the different boundary simulations have little bearing on the turbulence because the 
+The different axial boundary conditions used here include zero-value, zero-derivative, and perfectly conducting metal plates, which can be modeled with a Bohm sheath condition. 
+The main finding is that the nonlinear instability is robust to changes in boundary conditions:  while the linear stability properties are modified significantly with different boundary conditions,  the 
 nonlinear instability still dominates the turbulent drive in all cases. 
 In fact, the qualitative properties of the turbulence and the turbulent
 dynamics are similar between the simulations. Quantitatively, there are some differences between the simulations such as varying fluctuation levels and varying degrees to which
@@ -183,14 +178,14 @@ Finally, Sec.~\ref{Sec_lin_vs_nl} explores the effect of the nonlinear instabili
 
 
 
-\section{The drift wave model}
+\section{The simulation model}
 \label{dw_model}
 
 A Braginskii-based fluid model~\cite{Braginskii1965} is used to simulate global drift wave turbulence in LAPD using the BOUT++ code~\cite{dudson2009}. 
 The evolved variables in the model are the plasma density, $N$, the electron fluid parallel velocity $\vpe$, the potential vorticity $\varpi \equiv \gradperp \cdot (N_0 \gradperp \phi)$,
 and the electron temperature $T_e$. The ions are assumed cold in the
 model ($T_i = 0$), and sound wave effects are neglected ($v_i = 0$). Details of the simulation code, derivations of the model, grid convergence studies, and analyses of simplified models
-may be found in previous LAPD simulation studies~\cite{Popovich2010a,Popovich2010b,Umansky2011,friedman2012,friedman2012b}.
+may be found in previously published LAPD simulation studies~\cite{Popovich2010a,Popovich2010b,Umansky2011,friedman2012,friedman2012b}.
 
 The equations are developed with Bohm normalizations: lengths are
 normalized to the ion sound gyroradius, times to the ion
@@ -239,8 +234,7 @@ direction. The $n=0$ suppressed simulation adds an artificial sink-like contribu
 ($k_\parallel = 0$ contribution, where $n = k_\para l_\para /2 \pi$) of the fluctuations at each time step. This $n=0$ suppression eliminates nonlinear instability drive and allows
 the linear instability to take over the turbulent drive~\cite{friedman2012b}. The $n=0$ suppressed simulation, therefore, serves as a contrast to the periodic simulation in which a nonlinear instability
 drives the turbulence.
-
-Now the third (sheath) simulation is new. 
+  
 All previous LAPD simulation studies by this group used periodic axial boundary conditions~\cite{Popovich2010a,Popovich2010b,Umansky2011,friedman2012,friedman2012b}.
 The sheath simulation, as its name implies, uses sheath boundary conditions on the axial machine ends. Specifically, the sheath boundary
 condition for the parallel current is a linearized Bohm condition:
@@ -310,7 +304,7 @@ can be eliminated to isolate the conducting wall mode. The reduced set of linear
 along with the axial boundary condition given in Eq.~\ref{sheath_bndry}. The free energy source for this instability is the electron temperature gradient, which is also the free energy
 for the thermally driven drift waves. However, the adiabatic response is replaced here with a coupling to the potential through the axial boundary condition.
 
-Now, for the experimental parameters and profiles used in the turbulent simulations, 
+For the experimental parameters and profiles used in the turbulent simulations, 
 the linear growth rates for the drift waves and the conducting wall mode are comparable. The growth rates of the fastest growing linear eigenmode at a given azimuthal wavenumber
 are shown in Fig.~\ref{drift_cwm_gamma}.
 The periodic, sheath, Dirichlet, and Neumann growth rate curves are found by simulating the linearized versions of Eqs.~\ref{ni_eq}-\ref{te_eq} with their respective
