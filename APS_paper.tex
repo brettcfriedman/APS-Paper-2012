@@ -141,7 +141,7 @@ The turbulence self-organizes to drive this nonlinear instability, which destroy
 
 \section{Introduction}
 
-Hydrodynamic turbulence often occurs in the absence of linear instability, e.g. turbulence in pipe flow (Pouseille flow)~\cite{}.  Although many robust linear instabilities exist in magnetized plasmas, nonlinear instability can arise as has been shown in many turbulence simulations.
+Hydrodynamic turbulence often occurs in the absence of linear instability, e.g. turbulence in pipe flow (Pouseille flow)~\cite{manneville2008}.  Although many robust linear instabilities exist in magnetized plasmas, nonlinear instability can arise as has been shown in many turbulence simulations.
 Sometimes the instabilities were found to be of the subcritical~\cite{waltz1985,scott1990,scott1992,nordman1993,itoh1996,highcock2012} or supercritical~\cite{dimits2000,ernst2004} variety, 
 while at other times the nonlinear instability simply overpowered a particular linear instability to drive the 
 turbulence~\cite{biskamp1995,drake1995,zeiler1996,zeiler1997,korsholm1999,scott2002,scott2003,scott2005,friedman2012b}. In the scenario applicable to turbulence in
@@ -154,15 +154,24 @@ that the mechanism driving the nonlinear instability relies upon axial wavenumbe
 to preferentially drive $k_\para = 0$ density and temperature fluctuations, taking energy from the density and temperature equilibrium gradients. But in order to access the adiabatic response,
 which transfers energy into the dynamically critical $E \times B$ flows, the $k_\para = 0$ fluctuations must transfer their energy through nonlinear three-wave decay into $k_\para \ne 0$ fluctuations.
 
-All of these straight magnetic field simulations, however, employed periodic boundary conditions in the axial (field-aligned) direction.   One can justifiably question the use of periodic axial boundary conditions to model LAPD and wonder whether the nonlinear instability is an artifact of this choice.  Additionally the use of this boundary condition may prevent the fastest growing linear drift-waves in LAPD from being captured in the simulation: with periodic boundary conditions the longest wavelength mode has its wavelength equal to the length of the device whereas the fundamental mode (half-wavelength equal to the device length) has a higher growth rate.  The actual LAPD axial boundary includes conducting structures; it is well known that sheaths on metal walls can drive linear instabilities like the conducting wall modes~\cite{berk1991}. Clearly, periodic boundary simulations miss all of this wall physics.
-Axial boundary conditions, therefore, have a significant
-affect on the linear stability properties of the system, which is shown in detail in Section~\ref{sec_linear}. And since the nonlinear instability relies upon very-long-parallel-wavelength modes to operate, it is 
+All of these straight magnetic field simulations, however, employed periodic boundary conditions in the axial (field-aligned) direction.   
+One can justifiably question the use of periodic axial boundary conditions to model LAPD and wonder whether the nonlinear instability is an artifact of this choice.  
+The use of this boundary condition, for example, prevents the fastest growing linear drift-waves in LAPD from being captured in the simulation: 
+with periodic boundary conditions the longest wavelength mode has its wavelength equal to the length of the device whereas the fundamental mode 
+(half-wavelength equal to the device length) has a higher growth rate.  This may be the reason why the simulations produce $k_\para = 0$ structures. Would these disappear if the simulations
+are allowed access to longer wavelength structures through different boundary conditions?
+Furthermore, the actual LAPD axial boundary includes conducting structures; 
+it is well known that sheaths on metal walls can drive linear instabilities like the conducting wall mode~\cite{berk1991}. Clearly, periodic boundary simulations miss this wall physics.
+Axial boundary conditions do in fact have a significant
+affect on the linear stability properties of the system, which is shown in detail in Section~\ref{sec_linear}. 
+And since the nonlinear instability relies upon very-long-parallel-wavelength modes to operate, it is 
 reasonable to speculate that the bondaries also might have a significant affect on the nonlinear instability properties.
 
-The real axial boundaries in LAPD are complicated. One side of the device contains an hot, emissive cathode behind a mesh anode, and in front of that sits a biased limiter with radius slightly
+The real axial boundaries in LAPD are complicated. One side of the device contains a hot, emissive cathode behind a mesh anode, and in front of that sits a biased limiter with radius slightly
 less than the cathode radius~\cite{schaffner2012}.
-The other side contains a floating mesh plate, which is likely shielded by a layer of neutral gas (the plasma my be "detached" from the plate on this end). Not only is it difficult to determine what the actual axial boundary conditions are, it is also
-difficult to develop and implement models for the boundaries. Thus, this paper begins to explore the affect of non-periodic axial boundary conditions on the nonlinear turbulent dynamics using various
+The other side contains a floating mesh plate, which is likely shielded by a layer of neutral gas (the plasma may be detached from the plate on this end). Not only is it difficult to determine what the actual axial boundary conditions are, it is also
+difficult to develop and implement models for the boundaries. Thus, this paper takes a simpler approach of exploring the affect of 
+non-periodic axial boundary conditions on the nonlinear turbulent dynamics using various
 idealized boundaries, leaving the calculation and implementation of physically realistic boundary conditions to future work. 
 The different axial boundary conditions used here include zero-value, zero-derivative, and perfectly conducting metal plates, which can be modeled with a Bohm sheath condition. 
 The main finding is that the nonlinear instability is robust to changes in boundary conditions:  while the linear stability properties are modified significantly with different boundary conditions,  the 
@@ -178,7 +187,7 @@ Finally, Sec.~\ref{Sec_lin_vs_nl} explores the effect of the nonlinear instabili
 
 
 
-\section{The simulation model}
+\section{The Simulation Model}
 \label{dw_model}
 
 A Braginskii-based fluid model~\cite{Braginskii1965} is used to simulate global drift wave turbulence in LAPD using the BOUT++ code~\cite{dudson2009}. 
@@ -235,7 +244,6 @@ direction. The $n=0$ suppressed simulation adds an artificial sink-like contribu
 the linear instability to take over the turbulent drive~\cite{friedman2012b}. The $n=0$ suppressed simulation, therefore, serves as a contrast to the periodic simulation in which a nonlinear instability
 drives the turbulence.
   
-All previous LAPD simulation studies by this group used periodic axial boundary conditions~\cite{Popovich2010a,Popovich2010b,Umansky2011,friedman2012,friedman2012b}.
 The sheath simulation, as its name implies, uses sheath boundary conditions on the axial machine ends. Specifically, the sheath boundary
 condition for the parallel current is a linearized Bohm condition:
 
@@ -266,9 +274,8 @@ $6$ eV, respectively.}
 \includegraphics[]{statistics}
 \hfil
 \caption{A comparison of the statistical turbulent properties of the density field. The figures show \textbf{a)} the frequency spectrum, \textbf{b)} the pdf and \textbf{c)} the RMS level
-of the fluctuations as a function of radius. The various curves use data calculated from the experiment (black), the simulation with periodic boundary conditions (red), 
-the simulation with sheath boundary conditions (blue), the simulation where the $n=0$ components of the fluctuations are suppressed (green), the simulation with zero-value boundary conditions
-(magenta), and the simulation with zero-derivative boundary conditions (yellow). This color scheme is consistent throughout the paper.}
+of the fluctuations as a function of radius. The data are calculated from the experiment (black), periodic simulation (red), 
+the sheath simulation (blue), the $n=0$ suppressed simulation (green), the Dirichlet simulation (magenta), and the Neumann simulation (yellow). This color scheme is consistent throughout the paper.}
 \label{statistics}
 \end{figure}
 
@@ -290,7 +297,7 @@ drift wave type - one is driven by the density gradient and the other by the ele
 compression, called the adiabatic response, and are made unstable by the electron-ion collisional dissipation. These instabilities act under all choices of parallel boundary conditions.
 
 The other instability is called the conducting wall mode (CWM) since it is driven by the conducting wall sheaths on the parallel boundaries. Various terms in Eqs.~\ref{ni_eq}-\ref{te_eq} 
-can be eliminated to isolate the conducting wall mode. The reduced set of linearized equations are:
+can be eliminated to isolate the conducting wall mode. The reduced set of linearized equations is:
 
 \beqar
 \label{ve_eq2}
@@ -305,7 +312,7 @@ along with the axial boundary condition given in Eq.~\ref{sheath_bndry}. The fre
 for the thermally driven drift waves. However, the adiabatic response is replaced here with a coupling to the potential through the axial boundary condition.
 
 For the experimental parameters and profiles used in the turbulent simulations, 
-the linear growth rates for the drift waves and the conducting wall mode are comparable. The growth rates of the fastest growing linear eigenmode at a given azimuthal wavenumber
+the linear growth rates for the drift waves and the CWM are comparable. The growth rates of the fastest growing linear eigenmode at a given azimuthal wavenumber
 are shown in Fig.~\ref{drift_cwm_gamma}.
 The periodic, sheath, Dirichlet, and Neumann growth rate curves are found by simulating the linearized versions of Eqs.~\ref{ni_eq}-\ref{te_eq} with their respective
 axial boundary conditions in BOUT++. Therefore, both the density- and temperature-driven drift wave contributions are present for these curves.
@@ -319,7 +326,7 @@ it affects the linear stability properties of the system at low azimuthal wavenu
 than the drift waves for $m \lessapprox 30$ but less unstable for $m \gtrapprox 30$, and the eigenmode with the highest growth rate has $m=20$ for the sheath simulation as opposed to $m=60$ for the pure
 drift wave simulations.
 The linear sheath eigenmodes also reflect which of the linear instabilities is active at which wavenumber. In other words, the sheath eigenmodes have CWM character at $m \lessapprox 30$ and drift wave
-character at $m gtrapprox 40$. This manifests itself as differences in axial and radial structure as well as in phase relations between the different scalar fields. However, the linear differences
+character at $m \gtrapprox 40$. This manifests itself as differences in axial and radial structure as well as in phase relations between the different scalar fields. However, the linear differences
 are only significant in the end if they affect the turbulence dynamics. And following a previous paper~\cite{friedman2012b}, an effective way to study the turbulence dynamics is with
 an energy dynamics analysis of the turbulent simulations.
 
@@ -337,7 +344,7 @@ E = \frac{1}{2} \int_V  \left[ P_0 \left((N/N_0)^2 + \frac{3}{2} (T_e/T_{e0})^2 
 
 where $P_0 = N_0 T_{e0}$ is the equilibrium pressure.
 The $\frac{1}{2} P_0 (N/N_0)^2$ term is the potential energy due to density fluctuations, $\frac{3}{4} P_0 (T_e/T_{e0})^2$ is the electron temperature fluctuation potential energy,
-$N_0 \frac{m_e}{2 m_i} \vpe^2$ is the parallel electron kinetic energy, and $\frac{1}{2} N_0 (\gradperp \phi)^2$ is the $E \times B$ perpendicular kinetic energy.
+$\frac{1}{2} N_0 \frac{m_e}{m_i} \vpe^2$ is the parallel electron kinetic energy, and $\frac{1}{2} N_0 (\gradperp \phi)^2$ is the $E \times B$ perpendicular kinetic energy.
 
 A more detailed look at the energetic processes comes from a spectral energy analysis. To do this, each fluid field $(N,T_e,\vpe,\phi)$ at a given time is Fourier decomposed as 
 $F(r,\theta,z) = \sum_{\vec{k}} f_{\vec{k}}(r) e^{i (m \theta + k_z z )}$,
@@ -392,7 +399,7 @@ the state variables $N, \phi,$ and $T_e$.  Altogether, the coupling through the 
 adiabatic response. It is an essential part of both the linear and nonlinear
 drift wave mechanisms~\cite{scott2002,scott2005}. The adiabatic response moves energy from the pressure fluctuations to the perpendicular flow through the parallel current.
 
-Finally, the $Q_j(\vec{k})$ terms represent the fluctuation energy sources. They are rewritten here:
+Finally, the $Q_j(\vec{k})$ terms represent the fluctuation energy sources. They are:
 
 \beqar
 Q_n(\vec{k}) & = & Re \left\{ \left< -\frac{i m T_{e0}}{N_0 r} \pdr N_0 \phi_{\vec{k}} n_{\vec{k}}^*  \right> \right\}
@@ -417,7 +424,7 @@ energy in the equilibrium gradients.
 \label{dyn_results}
 
 \begin{figure}[!htbp]
-\includegraphics[width=0.8\textwidth]{energy_diagrams}
+\includegraphics[width=0.85\textwidth]{energy_diagrams}
 \hfil
 \caption{Summary of the energy dynamics for the \textbf{a)} periodic case and \textbf{b)} sheath boundary case. Each arrow contains the sum over all $m$. The 0's in the parentheses
 represent the $n=0$ modes while the !0's represent a sum over the $n$ modes for $n \ne 0$. The values in the arrows represent the percentage of total energy that goes through the channel
@@ -435,8 +442,7 @@ $\nabla N_0$ and $\nabla T_{e0}$. The arrows labeled $Q_n$ and $Q_t$ represent e
 the equilibrium gradients into the fluctuations, $n(\vec{k})$ and $t(\vec{k})$. The four $Q$ arrows contain values that sum to $100$ (by choice of normalization). 
 Since the $Q$ pathways are the only pathways that deposit
 net energy into the fluctuations, the numbers in all arrows represent a percentage of the total energy injected into the system.
-Now, a majority of the energy deposited into the fluctuations ($71\%$
-for the periodic simulation and $56\%$ for the sheath simulation)
+Now, a majority of the energy deposited into the fluctuations ($71\%$ for the periodic simulation and $56\%$ for the sheath simulation)
 is from the density gradient into the $n=0$ density fluctuations. This is not a path allowed by the linear drift-wave instabilities in the system since
 they can only deposit energy into $n \ne 0$ fluctuations.
 In fact, in this turbulent state, more energy is transfered by nonlinear three-wave coupling into $n \ne 0$ fluctuations than by direct injection from the equilibrium gradients. The three-wave
@@ -447,7 +453,7 @@ The reason why all of the non-dissipated energy that is injected into $n=0$ dens
 $n \ne 0$ density and temperature potential energy structures rather than into $n=0$
 kinetic energy structures is that potential to kinetic energy transfer can only work through the adiabatic response, which requires $n \ne 0$. Actually, in the sheath simulation, potential energy
 can transfer to kinetic energy through the axial boundaries, but this still requires $n \ne 0$ and it works only through the temperature fluctuations, which are less important than the density
-fluctuations in the simulations. Note, in fact, that this sheath boundary transfer channel (along with other boundary contributions) isn't included in the energy dynamics calculations.
+fluctuations in the simulations. Note, in fact, that boundary contributions aren't included in the energy dynamics calculations as they are insignificant.
 So the main transfer channel from potential to kinetic energy, shown by the $C_n$, $C_t$, and $C_\phi$ arrows, is the adiabatic response. The adiabatic response takes energy
 from the $n \ne 0$ density and temperature fluctuations and transfers it into the parallel velocity fluctuations ($C_n$ and $C_t$, respectively). It then transfers some of this energy into
 $n \ne 0$ potential fluctuations ($C_\phi$), while much of the fluctuation energy is ohmically dissipated ($D_v$).
@@ -458,7 +464,8 @@ from the diagrams in Fig.~\ref{en_diagrams}.
 First, the turbulent dynamics in both simulations are dominated by the nonlinear instability process described above and in Friedman et al.~\cite{friedman2012b}
 rather than the paradigmatic process of linear instability energy injection followed by nonlinear cascading. And second,
 the periodic and sheath simulations have qualitatively similar dynamics despite the fact that the linear stability properties of the two cases
-are qualitatively different. This speaks to the robustness of the nonlinear instability.
+are qualitatively different. This is also true of the Dirichlet and Neumann simulations, although their diagrams are not shown in Fig.~\ref{en_diagrams}. 
+This speaks to the robustness of the nonlinear instability.
 
 A more compact way to see the similarity of the instability process in all of the simulations is shown in Fig.~\ref{nl_vs_lin_gamma}. 
 This figure shows the turbulent growth rate of the five simulations. 
@@ -468,7 +475,7 @@ Formally,
 
 \beq
 \label{gamma_def}
-\gamma(\vec{k}) = \left\{ \sum_j Q_j(\vec{k}) + D_j(\vec{k}) \right\} /2 E_{tot}(\vec{k}), 
+\gamma(\vec{k}) = \left[ \sum_j Q_j(\vec{k}) + D_j(\vec{k}) \right] /2 E_{tot}(\vec{k}), 
 \eeq
 
 where the index j represents the different fields.
@@ -507,7 +514,7 @@ instability picture of the other simulations.
 \includegraphics[]{lin_vs_nl_gamma}
 \hfil
 \caption{ The turbulent growth rates with $\gamma$ defined in Eq.~\ref{gamma_def}. The $n=0$ (solid) and $n = 1$ (dashed) 
-growth rates are displayed as a function of $m$.}
+growth rates are displayed as a function of $m$. The different colors represent different simulations, consistent with the scheme used in Fig.~\ref{statistics}}
 \label{nl_vs_lin_gamma}
 \end{figure}
 
@@ -570,15 +577,15 @@ with the inner product defined in Eq.~\ref{basis_orthonormality}, giving $E_{0,m
 The ratio $R_m$ is shown in Fig.~\ref{ratios} for the five simulations. For the most part, the simulations other than the $n=0$ suppressed one have a small value of the ratio ($R_m < 0.25$) for all $m$. 
 This confirms that the turbulence largely self-organizes
 without regard to the linear physics. The one exception is the Dirichlet simulation for $m > 50$, which has $R_m \sim 0.5$. Most of the energy in this and the other simulations, however, 
-is at low $m$ where the turbulent growth rates are largest~\cite{friedman2012b},
-so these larger $m$ eigenmodes don't make a large impact on the overall structure of the turbulence.
+is at low $m$ where the turbulent growth rates are largest~\cite{friedman2012b}, so these larger $m$ eigenmodes don't make a large impact on the overall structure of the turbulence.
 In fact, $R_m$ is below $0.1$ for $m<40$ for the periodic, Dirichlet, and Neumann simulations, precisely the area where
 $n=0$ structures dominate the energy spectrum~\cite{friedman2012b}. It is not surprising then that the fastest growing linear eigenfunctions, which have little or no flute character,
 don't make up much of the energy of the signal. The sheath simulation shows more linear eigenmode dominance at low $m$ because of the relatively large CWM growth rate, but $R_m$ is still only
 about $0.2$, which isn't enough for the linear eigenmodes to dominate the turbulent structure.
 Also not surprising is that the fastest growing eigenfunctions make up a significant fraction of the energy in the $n=0$ suppressed simulation. Where the linear drift wave instability 
 (and the turbulent growth rate) is the strongest (at $m \sim 50$), $R_m \sim 0.5$. The linear physics controls the $n=0$ suppressed simulation, and the linear eigenmode structure certainly asserts itself
-in the turbulence, but only to a certain degree ($50\%$).
+in the turbulence, but only to a certain degree ($50\%$). Overall, Fig.~\ref{ratios} shows the relative strength of the linear instabilities compared to nonlinear effects for each of the simulations.
+While the nonlinear instability is dominant for all of the simulations other than the $n=0$ suppressed one, the linear instabilities do still act to varying degree in all of the simulations.
 
 \begin{figure}[!htbp]
 \includegraphics[]{ratios}
@@ -648,9 +655,9 @@ in the turbulence, but only to a certain degree ($50\%$).
 \section{Conclusion}
 \label{conclusion}
 
-The observation of filamentary $k_\para = 0$ structures is common in many different kinds of experiments and simulations~\cite{rogers2010,kamataki2007}. 
+The observation of filamentary $k_\para = 0$ structures is common in many different kinds of experiments and simulations~\cite{rogers2010,kamataki2007,brochard2005}. 
 Not surprisingly, the presence of these structures is usually attributed to linear flute-like instabilities such as flow-driven Kelvin-Helmholtz or interchange instabilities rather than to 
-nonlinear instabilities~\cite{rogers2010,kamataki2007}.
+nonlinear instabilities~\cite{rogers2010,kamataki2007,brochard2005}.
 Due to natural limitations in plasma turbulence experiments, one usually has to resort to indirect evidence to 
 gain insight into physical mechanisms of observed turbulence. 
 On the other hand, numerical simulations have all spatial and temporal information available which allows one to perform detailed turbulence analyses, such as the energetics analysis
@@ -714,11 +721,16 @@ by construction of Eq.~\ref{f_recon}, it also happens to correspond to the axial
 in $n=0$ modes followed by $n=1$ modes and so on. Therefore, in reality, the axial Fourier decomposition is a useful tool for even the sheath simulation despite the fact that Fourier
 modes are not natural eigenmodes in this case.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 %\bibliography{refs}
 %\bibliographystyle{prsty}
 
 \begin{thebibliography}{10}
+
+\bibitem{manneville2008}
+P. Manneville, Pramana {\bf 70},  1009  (2008).
 
 \bibitem{waltz1985}
 R.~E. Waltz, Phys. Rev. Lett. {\bf 55},  1098  (1985).
@@ -738,7 +750,7 @@ K. Itoh, S.~I. Itoh, M. Yagi, and A. Fukuyama, Journal of the Physical Society
   of Japan {\bf 65},  2749  (1996).
 
 \bibitem{highcock2012}
-E.~G. Highcock {\it et~al.}, Phys. Rev. Lett.  (submitted).
+E.~G. Highcock {\it et~al.}, \emph{Zero-Turbulence Manifold in a Toroidal Plasma}, Phys. Rev. Lett.  (submitted).
 
 \bibitem{dimits2000}
 A.~M. Dimits, G. Bateman, and et~al., Phys. Plasmas {\bf 7},  969  (2000).
@@ -822,6 +834,10 @@ B. Rogers and P. Ricci, Phys. Rev. Lett. {\bf 104},  225002  (2010).
 \bibitem{kamataki2007}
 K. Kamataki {\it et~al.}, J. Physical Society of Japan {\bf 76},  054501
   (2007).
+
+\bibitem{brochard2005}
+F. Brochard, E. Gravier, and G. Bonhomme, Phys. Plasmas {\bf 12},  062104
+  (2005).
 
 \end{thebibliography}
 
